@@ -1,12 +1,20 @@
 import streamlit as st
 import pandas as pd
 
-# Establish connection to Google Sheets
-conn = st.connection("gsheets", type="gspread", url="https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI/edit?gid=0")
+# Function to load data from Google Sheets
+@st.cache_data(ttl=600)
+def load_data(sheet_url):
+    csv_url = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=')
+    return pd.read_csv(csv_url)
 
-# Fetch data from the specified sheet
-df = conn.read(worksheet="Sheet1", usecols=[0, 1, 2], ttl=600)
+# URL of your Google Sheet
+sheet_url = "https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI/edit#gid=0"
 
-# Display the data in the app
-st.title('Veranda Vin Wine List')
+# Load data
+df = load_data(sheet_url)
+
+# Streamlit app layout
+st.title("Wine List")
+
+# Display data
 st.dataframe(df)
