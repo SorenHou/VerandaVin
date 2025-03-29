@@ -92,16 +92,16 @@ st.markdown("""
 
 # Function to load data from Google Sheets
 @st.cache_data(ttl=600)
-def load_data(sheet_url):
-    csv_url = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=')
+def load_data(https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI):
+    csv_url = https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI.replace('/edit#gid=', '/export?format=csv&gid=')
     return pd.read_csv(csv_url)
 
 # URL of your Google Sheet
-sheet_url = "https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI/edit#gid=0"
+https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI = "https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI/edit#gid=0"
 
 # Load data
 try:
-    df = load_data(sheet_url)
+    df = load_data(https://docs.google.com/spreadsheets/d/1hEqvhRM6qnflV_fkqHq5jf2fDXHuDFDZCv53HYPBQeI)
     # Ensure numeric price
     df['Salgspris'] = pd.to_numeric(df['Salgspris'], errors='coerce')
 except Exception as e:
